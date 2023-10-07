@@ -1,0 +1,27 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+</form>
+
+<div id="strategy-form-container">
+    <form method="post" class="strategy-form">
+        {% csrf_token %}
+        {{ strategy_form.as_p }}
+    </form>
+</div>
+
+<button type="button" class="add-strategy">Add strategy</button>
+<button type="submit">Submit</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("strategy-form-container");
+        const addButton = document.querySelector(".add-strategy");
+
+        addButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const newForm = container.querySelector(".strategy-form").cloneNode(true);
+            container.appendChild(newForm);
+        });
+    });
+</script>
